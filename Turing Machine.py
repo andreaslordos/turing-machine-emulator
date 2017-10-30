@@ -1,4 +1,9 @@
-responses=["7","3R S=5","3R S=5 RB","W1 5L S=5","W0 5L S=4","W0 5L S=5","W1 5L S=5","4R S=7","4R S=6","4R S=3","4R S=2","W0 5L S=4","W1 5L S=4","W1 5L S=5","W0 5L S=4","1","H 0 0 0 1 1 1 0 1 H","1"]
+'''
+Turing machine emulator
+Allows you to input different paremeters (e.g rules, tape length, original tape), and runs your program on a virtual Turing Machine to give you a result
+Uncomment all commented lines below to test a binary addition program, and if you do that then comment any line that has input() in it
+'''
+#responses=["7","3R S=5","3R S=5 RB","W1 5L S=5","W0 5L S=4","W0 5L S=5","W1 5L S=5","4R S=7","4R S=6","4R S=3","4R S=2","W0 5L S=4","W1 5L S=4","W1 5L S=5","W0 5L S=4","1","H 0 0 0 1 1 1 0 1 H","1"]
 
 def help():
     print("Hello! This is a Turing Machine. A Turing Machine is cool. There is a head which can read, write or move left/right. The head reads and writes on tape which acts as memory. Turing was a cool dude")
@@ -33,9 +38,9 @@ def identifyAction(command):
     return checkIfValid(command)
     
 help()
-#stateNumb=int(input("How many states exist? "))
-stateNumb=int(responses[0])
-responses.pop(0)
+stateNumb=int(input("How many states exist? "))
+#stateNumb=int(responses[0])
+#responses.pop(0)
 
 stateAction={} #tuple of (1/0,state)
 
@@ -55,9 +60,9 @@ for x in range(stateNumb):
                     else:
                         print("Invalid! Lets try that again.")
 
-#startingState=int(input("Starting state: "))
-startingState=int(responses[0])
-responses.pop(0)
+startingState=int(input("Starting state: "))
+3startingState=int(responses[0])
+#responses.pop(0)
 
 print("Now is the time to input the tape. It may be as long as you want it to be, but it may only contain the following characters")
 print()
@@ -68,9 +73,9 @@ print()
 print("====================================")
 
 while True:
-    #tape=input("Input your own tape \n").split()
-    tape=responses[0].split()
-    responses.pop(0)
+    tape=input("Input your own tape \n").split()
+    #tape=responses[0].split()
+    #responses.pop(0)
     for cell in tape:
         if cell!="H" and cell!="1" and cell!="0":
             print("wrong cell: "+cell)
@@ -78,9 +83,10 @@ while True:
             break
     break
 print("Initial tape")
-print('|'+'|'.join(tape)+'|')#posOnTape=int(input("Input the starting position on the tape - indexing starts from 0"))
-posOnTape=int(responses[0])
-responses.pop(0)
+print('|'+'|'.join(tape)+'|')
+posOnTape=int(input("Input the starting position on the tape - indexing starts from 0"))
+#posOnTape=int(responses[0])
+#responses.pop(0)
 state=startingState
 halt=False
 
