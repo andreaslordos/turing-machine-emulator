@@ -14,13 +14,12 @@ def help():
 
 def isInt(numb):
     try:
-        int(numb)
         int(numb)%1
         return True
     except:
         return False
     
-def checkIfValid(command):
+def checkIfValid(command): #checks to see if an action is valid. will return False if not valid
     for action in command.split():
         if ((isInt(action.split("R")[0])==True) and (len(action.split("R"))==2) and (action.split("R")[-1]=='')):
             return "right"
@@ -42,7 +41,7 @@ stateNumb=int(input("How many states exist? "))
 #stateNumb=int(responses[0])
 #responses.pop(0)
 
-stateAction={} #tuple of (1/0,state)
+stateAction={} #tuple of (1 or 0,state)->list of instructions
 
 for x in range(stateNumb):
     for y in range(2):
@@ -91,7 +90,7 @@ state=startingState
 halt=False
 
 
-while True:
+while True: #actual Turing machine
     if halt==True:
         break
     currentAction=stateAction[int(tape[posOnTape]),int(state)]
