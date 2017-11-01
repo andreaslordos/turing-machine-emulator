@@ -1,10 +1,6 @@
-'''
-Turing machine emulator
-Allows you to input different paremeters (e.g rules, tape length, original tape), and runs your program on a virtual Turing Machine to give you a result
-Uncomment all commented lines below to test a binary addition program, and if you do that then comment any line that has input() in it
-'''
 #responses=["7","3R S=5","3R S=5 RB","W1 5L S=5","W0 5L S=4","W0 5L S=5","W1 5L S=5","4R S=7","4R S=6","4R S=3","4R S=2","W0 5L S=4","W1 5L S=4","W1 5L S=5","W0 5L S=4","1","H 0 0 0 1 1 1 0 1 H","1"]
-
+responses=["H","3R S=2","3R S=2","H","4R S=3","4R S=4","H","W0 5L S=2","W1 5L S=2","H","W1 5L S=2","W0 5L S=5","H","4R S=6","4R S=7","H","W1 5L S=2","W0 5L S=5","H","W0 5L S=5","W1 5L S=5","H","7R S=9","7R S=9","H","W1 1L S=10","W0 1L S=10","H","W1 1L S=11","W0 1L S=11","H","W1 1L S=12","W0 1L S=12","H","W1 3R S=13","W0 3R S=13","H","W1 S=14","W0 1L","5L S=2","1R","1R"]
+import pickle
 def help():
     print("Hello! This is a Turing Machine. A Turing Machine is cool. There is a head which can read, write or move left/right. The head reads and writes on tape which acts as memory. Turing was a cool dude")
     print("If you ever need help, type '-help'")
@@ -14,12 +10,13 @@ def help():
 
 def isInt(numb):
     try:
+        int(numb)
         int(numb)%1
         return True
     except:
         return False
     
-def checkIfValid(command): #checks to see if an action is valid. will return False if not valid
+def checkIfValid(command):
     for action in command.split():
         if ((isInt(action.split("R")[0])==True) and (len(action.split("R"))==2) and (action.split("R")[-1]=='')):
             return "right"
@@ -29,8 +26,8 @@ def checkIfValid(command): #checks to see if an action is valid. will return Fal
             return "write"
         if ((isInt(action.split("=")[-1])==True) and (len(action.split("="))==2) and (action.split("=")[0]=="S")):
             return "state"
-        if action=="RB":
-            return "read"
+        if action=="H":
+            return "halt"
         return False
 
 def identifyAction(command):
@@ -41,9 +38,22 @@ stateNumb=int(input("How many states exist? "))
 #stateNumb=int(responses[0])
 #responses.pop(0)
 
-stateAction={} #tuple of (1 or 0,state)->list of instructions
+stateAction={} #tuple of (1/0,state)
 
 for x in range(stateNumb):
+    while True:
+        print("What should I do if the state is "+str(x+1)+" and I'm reading a H (Halt?)")    
+        #command=input()
+        command=responses[0]
+        responses.pop(0)
+        if command=="-help":
+            help()
+        else:
+            if checkIfValid(command)!=False:
+                stateAction[("H",x+1)]=command.split()
+                break
+            else:
+                print("Invalid! Lets try that again.")  
     for y in range(2):
             while True:
                 print("What should I do if the state is "+str(x+1)+" and I'm reading a "+str(y)+"?")
@@ -58,10 +68,14 @@ for x in range(stateNumb):
                         break
                     else:
                         print("Invalid! Lets try that again.")
+                        
 
 startingState=int(input("Starting state: "))
 #startingState=int(responses[0])
 #responses.pop(0)
+
+with open('FirstSubtraction.pickle','wb') as handle:
+    pickle.dump(stateAction,handle,protocol=pickle.HIGHEST_PROTOCOL)
 
 print("Now is the time to input the tape. It may be as long as you want it to be, but it may only contain the following characters")
 print()
@@ -83,37 +97,35 @@ while True:
     break
 print("Initial tape")
 print('|'+'|'.join(tape)+'|')
-posOnTape=int(input("Input the starting position on the tape - indexing starts from 0"))
+posOnTape=int(input("Input the starting position on the tape - indexing starts from 0: "))
 #posOnTape=int(responses[0])
 #responses.pop(0)
 state=startingState
 halt=False
 
 
-while True: #actual Turing machine
+while True:
     if halt==True:
         break
-    currentAction=stateAction[int(tape[posOnTape]),int(state)]
+    try:
+        currentAction=stateAction[int(tape[posOnTape]),int(state)]
+    except:
+        currentAction=stateAction[tape[posOnTape],int(state)]
     for action in currentAction:
         whatAction=identifyAction(action)
         if whatAction=="read":
             pass
         elif whatAction=="right":
             posOnTape+=int(action.split("R")[0])
-            if tape[posOnTape]=="H":
-                for x in range(4):
-                    tape[x+1]="0"
-                    halt=True
         elif whatAction=="left":
             posOnTape-=int(action.split("L")[0])
-            if tape[posOnTape]=="H":
-                for x in range(4):
-                    tape[x+1]="0"
-                halt=True
         elif whatAction=="write":
             tape[posOnTape]=action.split("W")[-1]
         elif whatAction=="state":
             state=action.split("=")[-1]
+        elif whatAction=="halt":
+            halt=True
+            break
 print("-----------------")
 print("Final tape")
 print('|'+'|'.join(tape)+'|')
