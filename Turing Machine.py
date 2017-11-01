@@ -60,7 +60,7 @@ for x in range(stateNumb):
                         print("Invalid! Lets try that again.")
 
 startingState=int(input("Starting state: "))
-3startingState=int(responses[0])
+#startingState=int(responses[0])
 #responses.pop(0)
 
 print("Now is the time to input the tape. It may be as long as you want it to be, but it may only contain the following characters")
