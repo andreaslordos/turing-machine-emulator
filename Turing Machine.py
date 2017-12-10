@@ -1,6 +1,5 @@
 #responses=["7","3R S=5","3R S=5 RB","W1 5L S=5","W0 5L S=4","W0 5L S=5","W1 5L S=5","4R S=7","4R S=6","4R S=3","4R S=2","W0 5L S=4","W1 5L S=4","W1 5L S=5","W0 5L S=4","1","H 0 0 0 1 1 1 0 1 H","1"]
-responses=["H","3R S=2","3R S=2","H","4R S=3","4R S=4","H","W0 5L S=2","W1 5L S=2","H","W1 5L S=2","W0 5L S=5","H","4R S=6","4R S=7","H","W1 5L S=2","W0 5L S=5","H","W0 5L S=5","W1 5L S=5","H","7R S=9","7R S=9","H","W1 1L S=10","W0 1L S=10","H","W1 1L S=11","W0 1L S=11","H","W1 1L S=12","W0 1L S=12","H","W1 3R S=13","W0 3R S=13","H","W1 S=14","W0 1L","5L S=2","1R","1R"]
-import pickle
+#responses=["H","3R S=2","3R S=2","H","4R S=3","4R S=4","H","W0 5L S=2","W1 5L S=2","H","W1 5L S=2","W0 5L S=5","H","4R S=6","4R S=7","H","W1 5L S=2","W0 5L S=5","H","W0 5L S=5","W1 5L S=5","H","7R S=9","7R S=9","H","W1 1L S=10","W0 1L S=10","H","W1 1L S=11","W0 1L S=11","H","W1 1L S=12","W0 1L S=12","H","W1 3R S=13","W0 3R S=13","H","W1 S=14","W0 1L","5L S=2","1R","1R"]
 def help():
     print("Hello! This is a Turing Machine. A Turing Machine is cool. There is a head which can read, write or move left/right. The head reads and writes on tape which acts as memory. Turing was a cool dude")
     print("If you ever need help, type '-help'")
