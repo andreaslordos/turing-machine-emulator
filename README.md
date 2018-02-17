@@ -44,9 +44,13 @@ Where x is the state the Turing Machine is currently on, and y is the bit the Tu
 You can issue the following commands:
 
 * xL: moves the read/write "head" x spaces to the left
+
 * yR: moves the read/write "head" y spaces to the right
+
 * Wz: writes z, which can be either a 1, 0 or H, on the current cell the head is on
+
 * S=q: sets the state of the machine equal to q
+
 * H: halts the program and outputs the tape
 
 
