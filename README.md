@@ -6,9 +6,11 @@ A Turing Machine is a theoritical computer devised by Alan Turing in the 1930s. 
 
 # Example Code
 
-> * STARTING_POSITION = 4
-> * NAME = ADDING MACHINE
-> * STARTING_STATE = 1
+> / * STARTING_POSITION = 4
+
+> / * NAME = ADDING MACHINE
+
+> / * STARTING_STATE = 1
 
 > S1 R0, 1L
 > S1 R1, 4R S=2
@@ -21,6 +23,8 @@ A Turing Machine is a theoritical computer devised by Alan Turing in the 1930s. 
 > S3 R0, W0 4R S=2
 > S3 R1, 1L
 > S3 RH, 4R W0 1L W0 1L W0 1L W0 H
+
+Note: ignore the slashes on lines 1-3, they're only there due to GitHub's formatting rules.
 
 This is a program that takes a standard tape with the format of H x x x x x x x x H, where the "x"s are 1s or 0s. H stands for "HALT", and act as markers for the end of the tape. It then adds the two 4 bit binary numbers together, and leaves the result on the right side of the tape. 
 
