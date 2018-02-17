@@ -32,7 +32,7 @@ This is a program that takes a standard tape with the format of H x x x x x x x 
 
 The first few lines of code should contain the starting position of the tape (so which cell to start on), name and starting state of your program. It is important to put an asterisk before these lines to ensure the compiler does not try to translate them into code. For example,
 
-> * STARTING_POSITION = x
+> / * STARTING_POSITION = x
 
 Will set the starting position on the tape equal to x
 
