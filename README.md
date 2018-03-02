@@ -4,6 +4,10 @@ A Turing Machine emulator. Allows you to write programs for a virtual Turing Mac
 # What is a Turing Machine?
 A Turing Machine is a theoritical computer devised by Alan Turing in the 1930s. It uses an infinitely long 'tape' which is split up into an infinite number of cells as it's memory. The cells contain either 1s or 0s. There is a "head" which can change its position to read any cell to find out what it contains, and write over a cell to change what it contains. The Turing Machine has different "states", which change depending on what is read.
 
+A language or instruction set is said to be Turing Complete when it can simulate a Turing Machine.
+
+Watch [this](https://www.youtube.com/watch?v=dNRDvLACg5Q) video to find out more about Turing Machines.
+
 # Example Code
 
 > / * STARTING_POSITION = 4
@@ -27,6 +31,8 @@ A Turing Machine is a theoritical computer devised by Alan Turing in the 1930s. 
 Note: ignore the slashes on lines 1-3, they're only there due to GitHub's formatting rules.
 
 This is a program that takes a standard tape with the format of H x x x x x x x x H, where the "x"s are 1s or 0s. H stands for "HALT", and act as markers for the end of the tape. It then adds the two 4 bit binary numbers together, and leaves the result on the right side of the tape. 
+
+This code can be ran by starting up emulator.py and inputting 'example-program' when prompted.
 
 # How to code with the Turing Machine
 
